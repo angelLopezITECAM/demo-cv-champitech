@@ -8,40 +8,32 @@
 
 La función de este comando es preparar los datos para el modelo. Para ello, genera dos grupos de imágenes a partir de la carpeta data/raw: uno de entrenamiento con el 80% de los datos y otro de validación con el 20% restante, asegurando que la selección sea aleatoria.
 
-```
+```bash
 python src/dataset_ultralytics.py
 ```
 
   
 
 ## Entrenamiento
-Para entrenar el modelo se usa YOLO, en cualquiera de sus versiones y modelos.
-Entre los modelos que hay se encuentran: 
-- YOLOv3
-- YOLOv4
-- YOLOv5
-- YOLOv6
-- YOLOv7
-- YOLOv8
-- YOLOv9
-- YOLOv10
-- YOLO11
-- YOLO12
+Para entrenar el modelo se usa la arquitectura **YOLO**, implementada a través de la librería `Ultralytics`. Esta librería da acceso a varias versiones del modelo, principalmente **YOLOv8** y **YOLOv9**.
 
-Los modelos disponibles son: 
-| Nombre	      | Precisión | Velocidad  | Recursos necesarios |
-|-----------------|-----------|------------|---------------------|
-| Nano (n)        | Más baja  | Más rápida | Muy bajos           |
-| Small (s)       | Baja      | Rápida     | Bajos               |
-| Medium (m)      | Media     | Media      | Medios              |
-| Large (l)       | Alta      | Lenta      | Altos               |
-| Extra large (x) | Más alta  | Más lenta  | Muy altos           |
+Cada versión dispone de diferentes tamaños, que permiten equilibrar precisión y velocidad:
+
+| Nombre      | Identificador | Precisión | Velocidad  | Recursos Necesarios |
+| :---------- | :------------ | :-------- | :--------- | :------------------ |
+| Nano        | `n`           | Más Baja  | Más Rápida | Muy Bajos           |
+| Small       | `s`           | Baja      | Rápida     | Bajos               |
+| Medium      | `m`           | Media     | Media      | Medios              |
+| Large       | `l`           | Alta      | Lenta      | Altos               |
+| Extra Large | `x`           | Más Alta  | Más Lenta  | Muy Altos           |
 
 El comando para lanzar un entrenamiento es el siguiente:
 
+```bash
+python src/models/train.py --model yolov8n --epochs 50
 ```
-python src/modeling/train_ultralytics.py --model yolo12n --epochs 50
-```
- Dónde *model*, es el modelo a utilizar, y *epochs* es el número de veces que el modelo va a mirarse el dataset de principio a fin
 
+Donde:
+- `--model`: Es el modelo a utilizar (ej. `yolov10n` combina la versión 8 con el tamaño nano).
+- `--epochs`: Es el número de veces que el modelo procesará el dataset completo.
 
