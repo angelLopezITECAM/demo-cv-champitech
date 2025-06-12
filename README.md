@@ -1,61 +1,47 @@
-# demo-champitech
 
-<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
-    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
-</a>
+# demo-cv-champitech
+  
 
-Detección temprana de primordios
+## Crear dataset
 
-## Project Organization
+  
+
+La función de este comando es preparar los datos para el modelo. Para ello, genera dos grupos de imágenes a partir de la carpeta data/raw: uno de entrenamiento con el 80% de los datos y otro de validación con el 20% restante, asegurando que la selección sea aleatoria.
 
 ```
-├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
-│
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── pyproject.toml     <- Project configuration file with package metadata for 
-│                         demo_champitech and configuration for tools like black
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.cfg          <- Configuration file for flake8
-│
-└── demo_champitech   <- Source code for use in this project.
-    │
-    ├── __init__.py             <- Makes demo_champitech a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    └── plots.py                <- Code to create visualizations
+python src/dataset_ultralytics.py
 ```
 
---------
+  
+
+## Entrenamiento
+Para entrenar el modelo se usa YOLO, en cualquiera de sus versiones y modelos.
+Entre los modelos que hay se encuentran: 
+- YOLOv3
+- YOLOv4
+- YOLOv5
+- YOLOv6
+- YOLOv7
+- YOLOv8
+- YOLOv9
+- YOLOv10
+- YOLO11
+- YOLO12
+
+Los modelos disponibles son: 
+| Nombre	      | Precisión | Velocidad  | Recursos necesarios |
+|-----------------|-----------|------------|---------------------|
+| Nano (n)        | Más baja  | Más rápida | Muy bajos           |
+| Small (s)       | Baja      | Rápida     | Bajos               |
+| Medium (m)      | Media     | Media      | Medios              |
+| Large (l)       | Alta      | Lenta      | Altos               |
+| Extra large (x) | Más alta  | Más lenta  | Muy altos           |
+
+El comando para lanzar un entrenamiento es el siguiente:
+
+```
+python src/modeling/train_ultralytics.py --model yolo12n --epochs 50
+```
+ Dónde *model*, es el modelo a utilizar, y *epochs* es el número de veces que el modelo va a mirarse el dataset de principio a fin
+
 
