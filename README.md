@@ -15,7 +15,7 @@ python src/dataset_ultralytics.py
   
 
 ## Entrenamiento
-Para entrenar el modelo se usa la arquitectura **YOLO**, implementada a través de la librería `Ultralytics`. Esta librería da acceso a varias versiones del modelo, principalmente **YOLOv8** y **YOLOv9**.
+Para entrenar el modelo se usa la arquitectura **YOLO**, implementada a través de la librería `Ultralytics`. Esta librería da acceso a varias versiones del modelo, principalmente **YOLOv10** y **YOLO11**.
 
 Cada versión dispone de diferentes tamaños, que permiten equilibrar precisión y velocidad:
 
@@ -30,10 +30,10 @@ Cada versión dispone de diferentes tamaños, que permiten equilibrar precisión
 El comando para lanzar un entrenamiento es el siguiente:
 
 ```bash
-python src/models/train.py --model yolov8n --epochs 50
+python src/modeling/train_ultralytics.py --model yolov10s --epochs 50
 ```
 
 Donde:
-- `--model`: Es el modelo a utilizar (ej. `yolov10n` combina la versión 8 con el tamaño nano).
+- `--model`: Es el modelo a utilizar (ej. `yolov10n` combina la versión 10 con el tamaño nano).
 - `--epochs`: Es el número de veces que el modelo procesará el dataset completo.
 
