@@ -17,7 +17,8 @@ def main(
         help="Número de épocas para el entrenamiento."
     )
 ):
-    data_yaml_path = './data/processed/final_dataset/data.yaml'
+    """ data_yaml_path = './data/processed/final_dataset/data.yaml' """
+    data_yaml_path = './data/interim/primordia_split/data.yaml'
     img_size = 640
     experiment_name = f"{model_base_name}_{num_epochs}epochs"
     model = YOLO(f"{model_base_name}.pt")

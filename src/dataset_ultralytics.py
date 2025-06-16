@@ -8,7 +8,7 @@ from tqdm import tqdm
 import typer
 
 # --- Asegúrate de que esta configuración es correcta ---
-from config import PROCESSED_DATA_DIR, RAW_DATA_DIR, EXTERNAL_DATA_DIR
+from config import PROCESSED_DATA_DIR, RAW_DATA_DIR, EXTERNAL_DATA_DIR, INTERIM_DATA_DIR
 
 app = typer.Typer()
 
@@ -36,7 +36,7 @@ def main(
 
     # --- 1. PROCESAR DATASET LOCAL (PRIMORDIA) ---
     logger.info("Procesando dataset local 'primordia'...")
-    local_source_dir = RAW_DATA_DIR / "primordia"
+    local_source_dir = INTERIM_DATA_DIR / "primordia_date_split"
     local_img_dir = local_source_dir / "images"
     local_lbl_dir = local_source_dir / "labels"
     
@@ -58,7 +58,7 @@ def main(
 
     # --- 2. PROCESAR DATASET EXTERNO (CON ESTRUCTURA DIFERENTE) ---
     logger.info("Procesando dataset externo 'm18k'...")
-    external_source_dir = EXTERNAL_DATA_DIR / "m18k"
+    external_source_dir = EXTERNAL_DATA_DIR / "m18ka"
     external_splits = {}
     for split in ["train", "val", "test"]:
         # Adaptamos la ruta para que coincida con la estructura del dataset externo
