@@ -1,19 +1,19 @@
 task: detect
 mode: train
 model: yolov8n.pt
-data: ./data/interim/primordia_split/data.yaml
-epochs: 25
+data: C:\Users\Usuaio\Documents\Proyectos\ITECAM LABS\COMPUTER VISION\demo-cv-champitech\data\interim\temporal_runs\train_d0_val_d5\data.yaml
+epochs: 50
 time: null
 patience: 100
-batch: 16
+batch: 8
 imgsz: 640
 save: true
 save_period: -1
 cache: false
 device: null
 workers: 8
-project: models
-name: yolov8n_25epochs
+project: C:\Users\Usuaio\Documents\Proyectos\ITECAM LABS\COMPUTER VISION\demo-cv-champitech\models
+name: train_d0_val_d5
 exist_ok: true
 pretrained: true
 optimizer: auto
@@ -102,4 +102,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: botsort.yaml
-save_dir: models\yolov8n_25epochs
+save_dir: C:\Users\Usuaio\Documents\Proyectos\ITECAM LABS\COMPUTER VISION\demo-cv-champitech\models\train_d0_val_d5

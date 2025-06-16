@@ -38,12 +38,10 @@ def get_day_of_cultivation(json_path: Path) -> int:
 
 @app.command()
 def main(
-    model_base_name: str = typer.Option("yolov8n", "--model", help="Modelo YOLO base para el primer entrenamiento."),
+    model_base_name: str = typer.Option("yolov8m", "--model", help="Modelo YOLO base para el primer entrenamiento."),
     num_epochs: int = typer.Option(50, "--epochs", help="Número de épocas para cada paso de entrenamiento."),
     img_size: int = typer.Option(640, "--imgsz", help="Tamaño de imagen para el entrenamiento."),
-    # --- NUEVO ARGUMENTO ---
     batch_size: int = typer.Option(8, "--batch-size", help="Tamaño del batch para el entrenamiento. ¡Redúcelo si te quedas sin memoria!"),
-    # --- NUEVO ARGUMENTO ---
     use_amp: bool = typer.Option(True, "--amp/--no-amp", help="Usar Automatic Mixed Precision (AMP) para ahorrar memoria."),
     data_subdir: str = typer.Option("primordia", help="Subdirectorio en data/raw que contiene los datos."),
 ):
@@ -52,15 +50,13 @@ def main(
     """
     logger.info("🚀 Iniciando orquestador de entrenamiento temporal incremental.")
     
-    # --- 1. Mapeo de Días de Cultivo ---
-    # ... (El resto de esta sección no cambia)
     logger.info("Mapeando imágenes a sus días de cultivo...")
     raw_images_dir = RAW_DATA_DIR / data_subdir / "images"
     raw_labels_dir = RAW_DATA_DIR / data_subdir / "labels"
     raw_metadata_dir = RAW_DATA_DIR / data_subdir / "data"
     
     files_by_day = defaultdict(list)
-    # Usamos rglob para buscar recursivamente, es más robusto
+    
     all_label_files = list(raw_labels_dir.rglob("*.txt"))
 
     if not all_label_files:
